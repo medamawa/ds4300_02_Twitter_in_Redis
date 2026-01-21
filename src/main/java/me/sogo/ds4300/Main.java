@@ -1,11 +1,9 @@
 package me.sogo.ds4300;
 
 import me.sogo.ds4300.database.DatabaseAPIs;
-import me.sogo.ds4300.database.FollowDatabaseAPI;
-import me.sogo.ds4300.database.mySQL.FollowMySQL;
-import me.sogo.ds4300.database.TweetDatabaseAPI;
 import me.sogo.ds4300.database.mySQL.MySQLUtils;
 import me.sogo.ds4300.database.mySQL.TweetMySQL;
+import me.sogo.ds4300.database.mySQL.FollowMySQL;
 import me.sogo.ds4300.utility.CsvLoader;
 
 
@@ -13,8 +11,8 @@ public class Main {
 
   public static void main(String[] args) {
 
-    final String tweetsData = "src/main/resources/sample_data/tweets_sample.csv";
-    final String followsData = "src/main/resources/sample_data/follows_sample.csv";
+    final String tweetsData = "src/main/resources/sample_data/tweets.csv";
+    final String followsData = "src/main/resources/sample_data/follows.csv";
 
     DatabaseAPIs dbApis = setupApis();
 

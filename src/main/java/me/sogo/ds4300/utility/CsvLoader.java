@@ -46,8 +46,8 @@ public class CsvLoader {
 
       String[] parts = line.split(",");
 
-      int followerId = Integer.parseInt(parts[0]);
-      int followeeId = Integer.parseInt(parts[1]);
+      int followeeId = Integer.parseInt(parts[0]);
+      int followerId = Integer.parseInt(parts[1]);
 
       follows.add(new Follow(followerId, followeeId));
     }

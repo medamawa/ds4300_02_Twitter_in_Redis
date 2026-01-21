@@ -1,8 +1,8 @@
 package me.sogo.ds4300.model;
 
 public class Follow {
-  private int followerId;
-  private int followeeId;
+  private final int followerId;
+  private final int followeeId;
 
   public Follow(int followerId, int followeeId) {
     this.followerId = followerId;
