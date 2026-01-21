@@ -2,6 +2,7 @@ package me.sogo.ds4300.mySQL;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import me.sogo.ds4300.database.DatabaseAPIs;
 import me.sogo.ds4300.database.mySQL.FollowMySQL;
 import me.sogo.ds4300.database.mySQL.MySQLUtils;
@@ -65,10 +66,11 @@ public class BenchmarkTest {
 
     System.out.printf("Start inserting %d tweets...%n", tweets.size());
     long start = System.nanoTime();
+
     dbApis.tweetApi().postTweets(tweets);
+
     long end = System.nanoTime();
     double seconds = (end - start) / 1e9;
-
     System.out.printf("Inserted %d tweets in %.3f seconds (%.2f tweets/sec)%n",
         tweets.size(), seconds, tweets.size() / seconds);
 
@@ -88,10 +90,29 @@ public class BenchmarkTest {
     System.out.printf("Inserted %d follows%n", follows.size());
     */
 
-    List<Integer> follows = dbApis.followApi().getFollows(1);
+    Random random = new Random();
+    int runs = 10;
+    double totalTime = 0.0;
 
-    System.out.println(follows);
+    for (int i = 0; i < runs; i++) {
+      int userId = random.nextInt(10000);
 
+      System.out.printf("Start retrieving %d's timeline...%n", userId);
+      long start = System.nanoTime();
+
+      dbApis.getTimeline(userId, 10);
+
+      long end = System.nanoTime();
+      double seconds = (end - start) / 1e9;
+      System.out.printf("Retrieved %d's timeline in %.3f seconds (%.2f timelines/sec)%n",
+          userId, seconds, 1 / seconds);
+      totalTime += seconds;
+    }
+
+    double avgTime = totalTime / runs;
+
+    System.out.printf("Average over %d runs: %.6f seconds per run (%.2f timelines/sec)%n",
+        runs, avgTime, 1 / avgTime);
 
     closeDatabase();
   }
