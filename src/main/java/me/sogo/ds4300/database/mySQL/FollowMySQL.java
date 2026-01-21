@@ -48,7 +48,12 @@ public class FollowMySQL extends MySQLAPI implements FollowDatabaseAPI {
   }
 
   @Override
-  public List<Follow> getFollows(int userId) {
+  public List<Follow> getFollowers(int userId) {
+    return List.of();
+  }
+
+  @Override
+  public List<Follow> getFollowees(int userId) {
     return List.of();
   }
 }

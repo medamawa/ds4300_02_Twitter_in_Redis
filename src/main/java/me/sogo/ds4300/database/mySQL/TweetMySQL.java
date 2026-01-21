@@ -32,7 +32,7 @@ public class TweetMySQL extends MySQLAPI implements TweetDatabaseAPI {
   }
 
   @Override
-  public void insertTweet(Tweet tweet) {
+  public void postTweet(Tweet tweet) {
     String sql = "INSERT INTO tweet (user_id,tweet_ts,tweet_text) VALUES (?,?,?)";
     try {
       Connection con = dbu.getConnection();
@@ -50,7 +50,7 @@ public class TweetMySQL extends MySQLAPI implements TweetDatabaseAPI {
   }
 
   @Override
-  public void insertTweets(List<Tweet> tweets) {
+  public void postTweets(List<Tweet> tweets) {
     String sql = "INSERT INTO tweet (user_id,tweet_ts,tweet_text) VALUES (?,?,?)";
     try {
       Connection con = dbu.getConnection();
@@ -70,6 +70,11 @@ public class TweetMySQL extends MySQLAPI implements TweetDatabaseAPI {
 
   @Override
   public List<Tweet> getTweets(int userId) {
+    return List.of();
+  }
+
+  @Override
+  public List<Tweet> getTimeline(int userId) {
     return List.of();
   }
 }

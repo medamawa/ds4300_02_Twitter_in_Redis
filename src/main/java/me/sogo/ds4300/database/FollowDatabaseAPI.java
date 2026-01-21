@@ -7,5 +7,7 @@ public interface FollowDatabaseAPI extends DatabaseAPI {
 
   public void insertFollows(List<Follow> followList);
 
-  public List<Follow> getFollows(final int userId);
+  public List<Follow> getFollowers(final int userId);
+
+  public List<Follow> getFollowees(final int userId);
 }
