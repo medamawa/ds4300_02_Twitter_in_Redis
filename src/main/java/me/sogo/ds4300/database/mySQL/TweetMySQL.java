@@ -21,12 +21,14 @@ public class TweetMySQL extends MySQLAPI implements TweetDatabaseAPI {
         "tweet_ts DATETIME NOT NULL," +
         "tweet_text VARCHAR(140) NOT NULL" +
         ");";
+    String sql_createIndex = "CREATE INDEX idx_tweet_user_ts ON tweet (user_id, tweet_ts DESC);";
 
     try {
       Connection con = dbu.getConnection();
       Statement stmt = con.createStatement();
       stmt.execute(sql_dropTable);
       stmt.execute(sql_createTweetTable);
+      stmt.execute(sql_createIndex);
       stmt.close();
     } catch (SQLException e) {
       throw new RuntimeException(e);

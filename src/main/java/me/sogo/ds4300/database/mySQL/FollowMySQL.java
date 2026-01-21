@@ -19,12 +19,16 @@ public class FollowMySQL extends MySQLAPI implements FollowDatabaseAPI {
         "follower_id INT NOT NULL," +
         "followee_id INT NOT NULL" +
         ");";
+    String sql_createFollowerIndex = "CREATE INDEX idx_follow_follower ON follow(follower_id);";
+    String sql_createFolloweeIndex = "CREATE INDEX idx_follow_followee ON follow(followee_id);";
 
     try {
       Connection con = dbu.getConnection();
       Statement stmt = con.createStatement();
       stmt.execute(sql_dropTable);
       stmt.execute(sql_createFollowTable);
+      stmt.execute(sql_createFollowerIndex);
+      stmt.execute(sql_createFolloweeIndex);
       stmt.close();
     } catch (SQLException e) {
       throw new RuntimeException(e);
