@@ -1,17 +1,38 @@
 package me.sogo.ds4300;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
-public class Main {
-  public static void main(String[] args) {
-    //TIP Press <shortcut actionId="ShowIntentionActions"/> with your caret at the highlighted text
-    // to see how IntelliJ IDEA suggests fixing it.
-    System.out.printf("Hello and welcome!");
+import me.sogo.ds4300.database.FollowDatabaseAPI;
+import me.sogo.ds4300.database.mySQL.FollowMySQL;
+import me.sogo.ds4300.database.TweetDatabaseAPI;
+import me.sogo.ds4300.database.mySQL.MySQLUtils;
+import me.sogo.ds4300.database.mySQL.TweetMySQL;
 
-    for (int i = 1; i <= 5; i++) {
-      //TIP Press <shortcut actionId="Debug"/> to start debugging your code. We have set one <icon src="AllIcons.Debugger.Db_set_breakpoint"/> breakpoint
-      // for you, but you can always add more by pressing <shortcut actionId="ToggleLineBreakpoint"/>.
-      System.out.println("i = " + i);
+
+public class Main {
+  static final String DATABASE_NAME = System.getenv("HW1_MYSQL_DATABASE");
+  static final String DB_USER = System.getenv("HW1_MYSQL_USER");
+  static final String DB_PASSWORD = System.getenv("HW1_MYSQL_PW");
+  static final String DB_URL = "jdbc:mysql://localhost:3306/" + DATABASE_NAME;
+
+  public static void main(String[] args) {
+
+    if (DATABASE_NAME == null || DB_USER == null || DB_PASSWORD == null) {
+      throw new RuntimeException("MySQL env vars are not set.");
     }
+    System.out.println(DB_USER + ":" + DB_PASSWORD);
+
+    MySQLUtils dbu = new MySQLUtils(DB_URL, DB_USER, DB_PASSWORD);
+    dbu.initDatabase(DATABASE_NAME);
+
+    TweetDatabaseAPI tweetApi = new TweetMySQL();
+    FollowDatabaseAPI followApi = new FollowMySQL();
+
+    tweetApi.authenticate(dbu);
+    followApi.authenticate(dbu);
+
+    tweetApi.initTables();
+    followApi.initTables();
+
+    tweetApi.closeConnection();
+    followApi.closeConnection();
   }
 }
