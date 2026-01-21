@@ -33,15 +33,14 @@ public class TweetMySQL extends MySQLAPI implements TweetDatabaseAPI {
 
   @Override
   public void insertTweet(Tweet tweet) {
-    String sql = "INSERT INTO tweet (tweet_id,user_id,tweet_ts,tweet_text) VALUES (?,?,?,?)";
+    String sql = "INSERT INTO tweet (user_id,tweet_ts,tweet_text) VALUES (?,?,?)";
     try {
       Connection con = dbu.getConnection();
       PreparedStatement pstmt = con.prepareStatement(sql);
 
-      pstmt.setInt(1, tweet.getTweetId());
-      pstmt.setInt(2, tweet.getUserId());
-      pstmt.setString(3, tweet.getTweetTimestamp());
-      pstmt.setString(4, tweet.getTweetText());
+      pstmt.setInt(1, tweet.getUserId());
+      pstmt.setString(2, tweet.getTweetTimestamp());
+      pstmt.setString(3, tweet.getTweetText());
       pstmt.execute();
 
       pstmt.close();
@@ -52,16 +51,15 @@ public class TweetMySQL extends MySQLAPI implements TweetDatabaseAPI {
 
   @Override
   public void insertTweets(List<Tweet> tweets) {
-    String sql = "INSERT INTO tweet (tweet_id,user_id,tweet_ts,tweet_text) VALUES (?,?,?,?)";
+    String sql = "INSERT INTO tweet (user_id,tweet_ts,tweet_text) VALUES (?,?,?)";
     try {
       Connection con = dbu.getConnection();
       PreparedStatement pstmt = con.prepareStatement(sql);
 
       for (Tweet t : tweets) {
-        pstmt.setInt(1, t.getTweetId());
-        pstmt.setInt(2, t.getUserId());
-        pstmt.setString(3, t.getTweetTimestamp());
-        pstmt.setString(4, t.getTweetText());
+        pstmt.setInt(1, t.getUserId());
+        pstmt.setString(2, t.getTweetTimestamp());
+        pstmt.setString(3, t.getTweetText());
         pstmt.execute();
       }
       pstmt.close();

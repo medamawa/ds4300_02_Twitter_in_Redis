@@ -6,6 +6,13 @@ public class Tweet {
   private String tweetTimestamp;
   private String tweetText;
 
+  public Tweet(int userId, String tweetTimestamp, String tweetText) {
+    this.tweetId = -1;
+    this.userId = userId;
+    this.tweetTimestamp = tweetTimestamp;
+    this.tweetText = tweetText;
+  }
+
   public Tweet(int tweetId, int userId, String tweetTimestamp, String tweetText) {
     this.tweetId = tweetId;
     this.userId = userId;
