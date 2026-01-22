@@ -11,8 +11,12 @@ public record DatabaseAPIs(
   public List<Tweet> getTimeline(final int userId, final int postCount) {
     List<Integer> follows = followApi.getFollows(userId);
 
-    System.out.println(follows);
+//    System.out.println(follows);
 
     return tweetApi.getTweets(follows, postCount);
+  }
+
+  public List<Tweet> getTimeline2(final int userId, final int postCount) {
+    return tweetApi.getTimeline(userId, postCount);
   }
 }

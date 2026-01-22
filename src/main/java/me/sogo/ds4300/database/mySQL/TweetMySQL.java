@@ -122,4 +122,36 @@ public class TweetMySQL extends MySQLAPI implements TweetDatabaseAPI {
 
     return tweets;
   }
+
+  @Override
+  public List<Tweet> getTimeline(int userId, int postCount) {
+    List<Tweet> tweets = new ArrayList<>();
+    String sql = "SELECT t.tweet_id, t.user_id, t.tweet_ts, t.tweet_text " +
+        "FROM tweet t " +
+        "JOIN follow f ON t.user_id = f.followee_id " +
+        "WHERE f.follower_id = ? " +
+        "ORDER BY t.tweet_ts DESC " +
+        "LIMIT ?";
+
+    try {
+      Connection con = dbu.getConnection();
+      PreparedStatement pstmt = con.prepareStatement(sql);
+      pstmt.setInt(1, userId);
+      pstmt.setInt(2, postCount);
+
+      ResultSet rs = pstmt.executeQuery();
+      while (rs.next()) {
+        tweets.add(new Tweet(
+            rs.getInt("tweet_id"),
+            rs.getInt("user_id"),
+            rs.getString("tweet_ts"),
+            rs.getString("tweet_text")
+        ));
+      }
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+
+    return tweets;
+  }
 }

@@ -91,21 +91,21 @@ public class BenchmarkTest {
     */
 
     Random random = new Random();
-    int runs = 10;
+    int runs = 1000;
     double totalTime = 0.0;
 
     for (int i = 0; i < runs; i++) {
       int userId = random.nextInt(10000);
 
-      System.out.printf("Start retrieving %d's timeline...%n", userId);
+//      System.out.printf("Start retrieving %d's timeline...%n", userId);
       long start = System.nanoTime();
 
-      dbApis.getTimeline(userId, 10);
+      dbApis.getTimeline2(userId, 10);
 
       long end = System.nanoTime();
       double seconds = (end - start) / 1e9;
-      System.out.printf("Retrieved %d's timeline in %.3f seconds (%.2f timelines/sec)%n",
-          userId, seconds, 1 / seconds);
+//      System.out.printf("Retrieved %d's timeline in %.3f seconds (%.2f timelines/sec)%n",
+//          userId, seconds, 1 / seconds);
       totalTime += seconds;
     }
 
@@ -115,5 +115,11 @@ public class BenchmarkTest {
         runs, avgTime, 1 / avgTime);
 
     closeDatabase();
+  }
+
+  @Test
+  public void testCleanup() throws Exception {
+    setupDatabaseApis();
+    cleanUpDatabase();
   }
 }
