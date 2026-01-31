@@ -1,13 +1,11 @@
 package me.sogo.ds4300.mySQL;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 import me.sogo.ds4300.database.DatabaseAPIs;
 import me.sogo.ds4300.database.mySQL.FollowMySQL;
 import me.sogo.ds4300.database.mySQL.MySQLUtils;
 import me.sogo.ds4300.database.mySQL.TweetMySQL;
-import me.sogo.ds4300.model.Follow;
 import me.sogo.ds4300.model.Tweet;
 import me.sogo.ds4300.utility.CsvLoader;
 import org.junit.Test;

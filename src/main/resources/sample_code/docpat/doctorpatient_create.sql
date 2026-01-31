@@ -35,7 +35,6 @@ CREATE TABLE IF NOT EXISTS specialty (
   specialty VARCHAR(45) UNIQUE NOT NULL
 );
 
-
 -- -----------------------------------------------------
 -- Table `hospital`
 -- -----------------------------------------------------

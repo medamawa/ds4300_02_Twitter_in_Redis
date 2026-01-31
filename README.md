@@ -1,2 +1,2 @@
-# No.1 Twitter in RDB
+# No.2 Twitter in Redis
 Sogo Nishihara
