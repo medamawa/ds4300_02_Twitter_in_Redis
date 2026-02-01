@@ -7,7 +7,7 @@ import me.sogo.ds4300.database.mySQL.FollowMySQL;
 import me.sogo.ds4300.utility.CsvLoader;
 
 
-public class Main {
+public class MySQLMain {
 
   public static void main(String[] args) {
 

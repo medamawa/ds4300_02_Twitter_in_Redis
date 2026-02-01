@@ -1,5 +1,7 @@
 package me.sogo.ds4300.model;
 
+import org.json.JSONObject;
+
 public class Tweet {
   private int tweetId;
   private int userId;
@@ -18,6 +20,13 @@ public class Tweet {
     this.userId = userId;
     this.tweetTimestamp = tweetTimestamp;
     this.tweetText = tweetText;
+  }
+
+  public Tweet(JSONObject tweetJson) {
+    this.tweetId = -1;
+    this.userId = tweetJson.getInt("user_id");
+    this.tweetTimestamp = tweetJson.getString("timestamp");
+    this.tweetText = tweetJson.getString("text");
   }
 
   public int getTweetId() {

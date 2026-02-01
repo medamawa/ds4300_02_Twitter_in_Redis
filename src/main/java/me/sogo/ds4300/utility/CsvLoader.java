@@ -29,7 +29,7 @@ public class CsvLoader {
 
       String timestamp = LocalDateTime.now().toString();
 
-      tweets.add(new Tweet(userId, timestamp, tweetText));
+      tweets.add(new Tweet(i, userId, timestamp, tweetText));
     }
 
     return tweets;
