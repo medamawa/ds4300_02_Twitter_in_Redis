@@ -12,6 +12,11 @@ import me.sogo.ds4300.model.Tweet;
 import me.sogo.ds4300.utility.CsvLoader;
 import org.junit.Test;
 
+/**
+ * Before running this test, please make sure
+ * that `tweets.csv` and `follows.csv` are put in the correct
+ * directory (src/main/resources/data/*.csv).
+ */
 public class BenchmarkTest {
   DatabaseAPIs dbApis;
 
